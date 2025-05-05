@@ -1,0 +1,52 @@
+create database Amigo;
+
+create table Staff(
+	Staffid int not null auto_increment,
+	Name char(25) not null,
+	Title char(25) not null,
+	Commission int,
+	Contact_Info int(10) not null,
+	Lid int(11),
+	primary key(Staffid),
+	foreign key (Lid) references Login(Lid)
+	
+);
+
+create table Customer(
+	Cid int not null auto_increment,
+	Name char(25) not null,
+	Mode_Of_Payment char(8) not null,
+	Contact_Info varchar(10) not null,
+	Address varchar(30) not null,
+	Delivery_Date date not null,
+	primary key(Cid)	
+);
+
+create table Tiles(
+	Tid int not null auto_increment,
+	Name char(25) not null,
+	Size varchar((10)not null,
+	Type varchar(10) not null,
+	No_Of_Tiles int,
+	primary key(Tid)	
+);
+
+create table Login(
+	Lid int not null auto_increment,
+	LoginID varchar(10) not null,
+	Password varchar(10) not null,
+	primary key(Lid)
+);
+create table Orders(
+	Oid int not null auto_increment,
+	Number_Of_Tiles int not null,
+	Cid int not null,
+	Tid int not null,
+	Staffid int not null,
+	primary key(Oid),
+	foreign key (cid) references customer(cid),
+	foreign key (staffid) references staff(staffid),
+	foreign key (tid) references tiles(tid)
+);
+
+
